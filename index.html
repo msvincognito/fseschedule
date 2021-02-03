@@ -20,28 +20,40 @@
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'listWeek',
-            eventSources: [
-          {
-            url: 'https://ical-cors-proxy.herokuapp.com/?https://calendar.google.com/calendar/ical/kjl7euqkd7j5n72t44eth4i2o8%40group.calendar.google.com/public/basic.ics',
-            format: 'ics'
-          },
-          {
-            url: 'https://ical-cors-proxy.herokuapp.com/?https://use01.thegood.cloud/remote.php/dav/public-calendars/BHNK5Arjn4S7GMGX/?export',
-            format: 'ics'
-          }
-                        ],
-                    eventDidMount: function(info) {
-                                console.log(info)
-                               var tooltip = tippy(info.el, {
-        content: info.event.extendedProps.description,
-      });
-  }
-        });
-        calendar.render();
-      });
+              var calendarEl = document.getElementById('calendar');
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+                      initialView: 'listWeek',
+                      eventSources: [
+                              { // Incognito
+                                      url: 'https://ical-cors-proxy.herokuapp.com/?https://calendar.google.com/calendar/ical/kjl7euqkd7j5n72t44eth4i2o8%40group.calendar.google.com/public/basic.ics',
+                                      format: 'ics',
+                                      color: 'red'
+                                    },
+                              { // Universalis
+                                      url: 'https://ical-cors-proxy.herokuapp.com/?https://calendar.google.com/calendar/ical/g7l87lojlbdltb4992tbp9vnjs%40group.calendar.google.com/public/basic.ics',
+                                      format: 'ics',
+                                      color: 'blue'
+                                    },
+                              { // Aperture
+                                      url: 'https://ical-cors-proxy.herokuapp.com/?https://calendar.google.com/calendar/ical/kjfjra67lkg25iblfp06ihuanc%40group.calendar.google.com/public/basic.ics',
+                                      format: 'ics',
+                                      color: 'yellow'
+                                    },
+                              /* Wink wink
+     { // Math Soc
+     url: 'https://ical-cors-proxy.herokuapp.com/?https://use01.thegood.cloud/remote.php/dav/public-calendars/BHNK5Arjn4S7GMGX/?export',
+     format: 'ics'
+     }
+                                     */
+                            ],
+                      eventDidMount: function(info) {
+                              var tooltip = tippy(info.el, {
+                                      content: info.event.extendedProps.description,
+                                    });
+                            }
+                    });
+              calendar.render();
+            });
 
     </script>
   </head>
