@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+
+    <!-- based on https://fullcalendar.io/docs/initialize-globals and https://fullcalendar.io/docs/icalendar -->
+
+    <!-- Schedule itself -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.5.1/main.min.css">
+    <!-- ICAL dependency -->
+    <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
+    <!-- ICAL FullCalendar plugin -->
+    <script src="https://dkeparty.b-cdn.net/js/main.global.min.js"></script>
+    <!-- Tooltips -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/tippy.js@6.2.7/dist/tippy.cjs.min.js"></script> -->
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+
+    <link href='fullcalendar/main.css' rel='stylesheet' />
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'listWeek',
+            eventSources: [
+          {
+            url: 'https://ical-cors-proxy.herokuapp.com/?https://calendar.google.com/calendar/ical/kjl7euqkd7j5n72t44eth4i2o8%40group.calendar.google.com/public/basic.ics',
+            format: 'ics'
+          },
+          {
+            url: 'https://ical-cors-proxy.herokuapp.com/?https://use01.thegood.cloud/remote.php/dav/public-calendars/BHNK5Arjn4S7GMGX/?export',
+            format: 'ics'
+          }
+                        ],
+                    eventDidMount: function(info) {
+                                console.log(info)
+                               var tooltip = tippy(info.el, {
+        content: info.event.extendedProps.description,
+      });
+  }
+        });
+        calendar.render();
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id='calendar'></div>
+  </body>
+</html>
