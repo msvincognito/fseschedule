@@ -47,9 +47,14 @@
                                      */
                             ],
                       eventDidMount: function(info) {
-                              var tooltip = tippy(info.el, {
-                                      content: info.event.extendedProps.description,
-                                    });
+                              if (info.event.extendedProps.description) {
+                                      var tooltip = tippy(info.el, {
+                                              content: info.event.extendedProps.description,
+                                              appendTo: () => document.body,
+                                              interactive: true,
+                                              interactiveBorder: 30,
+                                            });
+                                    }
                             }
                     });
               calendar.render();
