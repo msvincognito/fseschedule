@@ -21,5 +21,5 @@ from anywhere, e.g. Nextcloud or Google Calendar.
 Unfortunately, fetching the ics calendars from Nextcloud/Google directly through
 clientside browser javascript is often impossible due to CORS, so all requests need
 to be done through a proxy. In our case, there is an instance of
-[ical-cors-proxy](https://gitlab.com/k-cybulski/ical-cors-proxy) sitting on Heroku
+[cors-proxy](https://github.com/msvincognito/cors-proxy) sitting on Heroku
 which allows for that.
