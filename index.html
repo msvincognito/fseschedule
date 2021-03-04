@@ -31,20 +31,39 @@
 <body>
   <div class="header">
     <h1>FSE Event Schedule</h1>
-    <div class="header-right">
-      <a href="https://ucmsa.nl/" class="logo"><img
-          src="https://ucmsa.nl/wp-content/uploads/2020/01/cropped-UCMSA_Universalis_Logo-1.png" alt="Universalis"
-          style="width:70px; height:50px;"></a>
-      <a href="https://msvincognito.nl" class="logo"><img
-          src="https://msvincognito.nl/wp-content/uploads/2013/08/web-logo-zwart.png" alt="MSV Incognito"
-          style="width:175px; height:50px;"></a>
-      <a href="https://www.msp-aperture.com/" class="logo"><img
-          src="https://static.wixstatic.com/media/59eb3d_3d2e3118804446ba91e9a5c361351693~mv2.png/v1/fill/w_346,h_304,al_c,lg_1,q_85/Logo_High_Res_no_background1.webp"
-          alt="Aperture" style="width:60px; height:50px;"></a>
-    </div>
+    <div class="header-right" id="logos"></div>
   </div>
 
+  <div id='downloadLinks'>
+    <div class="dropdown" style="float:right;">
+      <button class="dropbtn">Download Calendars</button>
+      <div class="dropdown-content" id="calendarLinks"></div>
+    </div>
+  </div>
   <div id='calendar'></div>
 </body>
+<script>
+  for (var i = 0; i < calendarSources.length; i++) {
+    c = calendarSources[i];
+    // for downloadable calendar
+    e = document.createElement("a");
+    e.href = c.calendarUrl;
+    e.text = c.className;
+    document.getElementById('calendarLinks').appendChild(e);
+
+    // for logos
+    if ("url" in c) {
+      e = document.createElement("a");
+      e.href = c.url;
+      e.class = "logo";
+      img = document.createElement("img");
+      img.src = c.logo;
+      img.alt = c.className;
+      img.style = c.logoStyle;
+      e.appendChild(img);
+      document.getElementById('logos').appendChild(e);
+    }
+  }
+</script>
 
 </html>
